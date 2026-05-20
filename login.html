@@ -294,7 +294,7 @@
 
         </div>
 
-    <a href="home.html" style="
+    <a href="index.html" style="
         position: fixed;
         bottom: 24px;
         right: 28px;
@@ -542,7 +542,7 @@
             if (logandoUsuario && inputCode === logandoUsuario.codigo_auth) {
                 localStorage.setItem("userEmail",   logandoUsuario.email);
                 localStorage.setItem("loggedUser",  logandoUsuario.login);
-                window.location.href = "home.html";
+                window.location.href = "index.html";
             } else {
                 showBanner("verifyBanner", "❌ Código de autenticação inválido!", "error");
             }
