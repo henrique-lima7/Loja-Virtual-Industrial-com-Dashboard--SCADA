@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>SQUAD - DASHBOARD SCADA</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { background: #020617; color: #f1f5f9; font-family: sans-serif; padding: 20px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .card { background: #0f172a; padding: 20px; border-radius: 12px; border: 1px solid #1e293b; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { text-align: left; padding: 8px; border-bottom: 1px solid #1e293b; }
+        .ia-box { border-left: 4px solid #ffc107; color: #ffc107; padding-left: 15px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h1>SQUAD <span style="color:#3b82f6">DASHBOARD INDUSTRIAL</span></h1>
+    
+    <div class="card ia-box">
+        <h3>IA OPERATIONAL ADVISOR</h3>
+        <p id="ia-text">Conectando ao núcleo de IA...</p>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <h3>TEMPERATURA (°C)</h3>
+            <canvas id="chartTemp"></canvas>
+        </div>
+        <div class="card">
+            <h3>VENDAS RECENTES</h3>
+            <table>
+                <thead><tr><th>Produto</th><th>Valor Total</th></tr></thead>
+                <tbody id="lista-vendas"></tbody>
+            </table>
+        </div>
+        <div class="card">
+            <h3>INVENTÁRIO ATUAL</h3>
+            <table id="tabela-estoque">
+                <thead><tr><th>Produto</th><th>Estoque</th></tr></thead>
+                <tbody id="lista-estoque"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        async function atualizar() {
+            try {
+                const res = await fetch('http://localhost:8000/dados-scada');
+                const data = await res.json();
+
+                // 1. Vendas (evita 'undefined')
+                document.getElementById('lista-vendas').innerHTML = data.vendas.map(v => 
+                    `<tr><td>${v.nome || 'Processando...'}</td><td>R$ ${v.total}</td></tr>`
+                ).join('');
+
+                // 2. Estoque
+                document.getElementById('lista-estoque').innerHTML = data.estoque.map(e => 
+                    `<tr><td>${e.nome}</td><td>${e.quantidade_atual} un</td></tr>`
+                ).join('');
+
+                // 3. IA Insight
+                const resIA = await fetch('http://localhost:8000/ia-advisor', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ dados: data.telemetria.slice(0, 5) })
+                });
+                const iaRes = await resIA.json();
+                document.getElementById('ia-text').innerText = iaRes.insight;
+
+            } catch (err) {
+                console.error("Erro ao carregar dados:", err);
+            }
+        }
+
+        setInterval(atualizar, 4000);
+        atualizar();
+    </script>
+</body>
+</html>
