@@ -2,6 +2,11 @@
 
 Este projeto consiste num ecossistema integrado para a **Indústria 4.0**, unindo uma plataforma de e-commerce de componentes industriais a um sistema de monitorização e controlo em tempo real (SCADA).
 
+## 🌐 Acesse o Projeto
+
+Clique no botão abaixo para visualizar a aplicação rodando ao vivo:
+
+[![Ver Site](https://img.shields.io/badge/Acessar%20Demonstração-Formulário%20Ativo-green?style=for-the-badge&logo=githubpages&logoColor=white)](https://henrique-lima7.github.io/Loja-Virtual-Industrial-com-Dashboard--SCADA/)
 
 
 ## Sobre o Projeto
