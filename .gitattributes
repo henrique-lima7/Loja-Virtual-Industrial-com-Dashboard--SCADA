@@ -1,12 +1,12 @@
-# Força a detecção padrão de cada extensão
+# Força o mapeamento correto das extensões
 *.py linguist-language=Python
 *.js linguist-language=JavaScript
 *.css linguist-language=CSS
 *.html linguist-language=HTML
 
-# Reduz drasticamente o peso dos sites para o Python e o JS dominarem
-# (O GitHub vai ler os arquivos, mas não vai contar o tamanho deles no gráfico)
+# Ignora o peso de arquivos HTML e CSS dentro de qualquer subpasta (camufla os sites grandes)
 **/css/* linguist-vendored
 **/styles/* linguist-vendored
 **/html/* linguist-vendored
 **/pages/* linguist-vendored
+*.html linguist-vendored
