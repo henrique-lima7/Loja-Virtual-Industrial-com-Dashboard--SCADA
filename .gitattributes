@@ -1,1 +1,5 @@
-*.html linguist-vendored=true
+# Garante que cada linguagem seja contada na sua respectiva categoria
+*.py linguist-language=Python
+*.js linguist-language=JavaScript
+*.css linguist-language=CSS
+*.html linguist-language=HTML
