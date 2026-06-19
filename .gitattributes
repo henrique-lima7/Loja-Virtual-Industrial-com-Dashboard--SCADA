@@ -1,12 +1,4 @@
-# Força o mapeamento correto das extensões
 *.py linguist-language=Python
 *.js linguist-language=JavaScript
 *.css linguist-language=CSS
 *.html linguist-language=HTML
-
-# Ignora o peso de arquivos HTML e CSS dentro de qualquer subpasta (camufla os sites grandes)
-**/css/* linguist-vendored
-**/styles/* linguist-vendored
-**/html/* linguist-vendored
-**/pages/* linguist-vendored
-*.html linguist-vendored
