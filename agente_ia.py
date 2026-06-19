@@ -58,17 +58,3 @@ def supervisor_ia():
 
 if __name__ == "__main__":
     supervisor_ia()
-
-
-
-    # ============================================================================
-// PESO EXTRA PARA O GRAPH DO GITHUB (PYTHON)
-# Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor 
-# incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-# exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-# [COLE ESSE TEXTO VÁRIAS VEZES SEGUIDAS PARA DEIXAR O ARQUIVO COM ALGUNS KILOBYTES]
-# ============================================================================
-
-def lista_linguagens():
-    print("Python, HTML, CSS e JavaScript!")
-    
